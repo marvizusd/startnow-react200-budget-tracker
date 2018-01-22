@@ -6,7 +6,9 @@ import Summary from './components/Summary';
 export default class App extends React.Component {
   render() {
     return (
+      
       <div className='container'>
+      <div className='hello'>Hello World</div>
         <div className='jumbotron' >
           <h1 className='display-3 text-center'>Budget Tracker</h1>
         </div>
@@ -50,7 +52,7 @@ export default class App extends React.Component {
                     <tbody>
                       <tr>
                         <td>Rent</td>
-                        <td>$$4,000.00</td>
+                        <td>$4,000.00</td>
                       </tr>
                     </tbody>
                   </table>

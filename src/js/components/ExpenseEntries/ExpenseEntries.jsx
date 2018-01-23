@@ -8,8 +8,8 @@ import {
 } from './expenseActions'
 
 export default class ExpenseEntries extends React.Component {
-    construtor(props) {
-        // super(props);
+    constructor(props) {
+        super(props);
 
         // Here we're binding these methods to the context
         // of the components. This only has to be done,
@@ -35,16 +35,19 @@ export default class ExpenseEntries extends React.Component {
 
     handleAddExpense() {
         const { description, amount, dispatch } = this.props;
+        // console.log("add expense",this.props);
         dispatch(addExpense(description, amount));
     }
 
     render() {
+        const { description, amount, lineItems} = this.props;
+        // console.log(lineItems);
         return (
             <div className='card boder-danger mb-3'>
                 <div className='car-header text-white bg-danger'>Expense Entries</div>
                 <div className='card-body'>
                     <form>
-                        <div> className='form-group'>
+                        <div className='form-group'>
                         <label htmlFor='expense-description'>Description</label>
                         <input
                             type='text'
@@ -83,10 +86,12 @@ export default class ExpenseEntries extends React.Component {
                             <tbody>
                                 {
                                     lineItems.map(lineItem => (
-                                        <tr>
-                                            <td>{ lineItem.description }</td>
-                                            <td>${ lineItem.amount.toFixed(2) }</td>
+                                       
+                                        <tr key={lineItem.key}>
+                                            <td >{ lineItem.description }</td>
+                                            <td >${ lineItem.amount.toFixed(2) }</td>
                                         </tr>
+
                                     ))
                                 }
                             </tbody>

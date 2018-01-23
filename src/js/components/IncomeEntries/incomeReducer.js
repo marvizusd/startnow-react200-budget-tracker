@@ -25,13 +25,15 @@ export default function IncomeReducer (state = defaultState, action){
           }
           
           case 'ADD_INCOME': {
-              const { description, amount } = action.payload;
+              const { description, amount, key } = action.payload;
+              console.log(action.payload)
               return {
                   description: '',
+                  amount:'',
                   action: '',
                   lineItems: [
                       ...state.lineItems,
-                      { description, amount }
+                      { description, amount, key }
                   ]
               };
           }

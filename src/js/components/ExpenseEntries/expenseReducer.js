@@ -1,4 +1,4 @@
-const defaultState= {
+const defaultState = {
     description: '',
     amount: '',
     lineItems: []
@@ -21,16 +21,24 @@ export default function ExpenseReducer (state = defaultState, action){
             };
         }
 
+        case 'UPDATE_EXPENSE_AMOUNT': {
+            return {
+                ...state,
+                amount: payload.amount
+            };
+        }
+
         case 'ADD_EXPENSE': {
-            const {  description, amount } = action.payload;
+            const { description, amount, key } = action.payload;
             return {
                 description: '',
+                amount:'',
                 action: '',
                 lineItems: [
                     // here we have all the previous line items
                     ...state.lineItems,
                     // plus a new object
-                    { description, amount }
+                    { description, amount, key }
                 ]
             };
         }

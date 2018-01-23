@@ -1,7 +1,7 @@
 import React from 'react';
 
 function calculateSum(lineItems) {
-    return lineItems.reduce((acc, lineItm) => acc +lineItem.amount, 0);
+    return lineItems.reduce((acc, lineItem) => acc + lineItem.amount, 0);
 }
 
 function formatCurrency(amount) {
@@ -18,11 +18,12 @@ function formatCurrency(amount) {
 
 export default class Summary extends React.Component {
     render(){
-        const { incomeItems, expenseItms } = this.props;
+        const { incomeItems, expenseItems } = this.props;
+        console.log(this.props, incomeItems)
 
-        const incomeTotal = calculateSum(incomeItems) / 100;
-        const expenseTotal = calculateSum(expenseItems) / 100;
-        const difference = Math.round(incomeTotal - expenseTotal) / 100;
+        const incomeTotal = calculateSum(incomeItems);
+        const expenseTotal = calculateSum(expenseItems);
+        const difference = (incomeTotal - expenseTotal).toFixed(2);
         
         return (
             <div className='card border-info mb-3'>
@@ -32,17 +33,17 @@ export default class Summary extends React.Component {
                         <div className='row'>
                             <div className='col-6 text-center'>
                                 <h6 className='h6 strong'>Total Income</h6>
-                                <p>$4,000.00</p>
+                                <p>${incomeTotal}</p>
                             </div>
                             <div className='col-6 text-center'>
                                 <h6 className='h6 strong'>Total Expenses</h6>
-                                <p>$1,500.00</p>
+                                <p>${expenseTotal}</p>
                             </div>
                         </div>
                         <div className='row justify-content-center'>
                             <div className='col-6 text-center'>
                                 <h6 className='h6 strong'>Left after spending</h6>
-                                <p>$1,500.00</p>
+                                <p>${difference}</p>
                             </div>
                         </div>
                     </div>
